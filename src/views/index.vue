@@ -29,100 +29,195 @@
         }
     }
 </style>
+<!--<template>-->
+<!--<div>-->
+
+<!--<div class="layout">-->
+<!--&lt;!&ndash;<Layout>&ndash;&gt;-->
+<!--&lt;!&ndash;<Header>Header</Header>&ndash;&gt;-->
+<!--&lt;!&ndash;<Content>Content</Content>&ndash;&gt;-->
+<!--&lt;!&ndash;<Footer>Footer</Footer>&ndash;&gt;-->
+<!--&lt;!&ndash;</Layout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<Layout>&ndash;&gt;-->
+<!--&lt;!&ndash;<Header>Header</Header>&ndash;&gt;-->
+<!--&lt;!&ndash;<Layout>&ndash;&gt;-->
+<!--&lt;!&ndash;<Sider hide-trigger>Sider</Sider>&ndash;&gt;-->
+<!--&lt;!&ndash;<Content>Content</Content>&ndash;&gt;-->
+<!--&lt;!&ndash;</Layout>&ndash;&gt;-->
+<!--&lt;!&ndash;<Footer>Footer</Footer>&ndash;&gt;-->
+<!--&lt;!&ndash;</Layout>&ndash;&gt;-->
+
+<!--<Layout>-->
+<!--<Header>Header</Header>-->
+<!--<Layout>-->
+<!--<Content>-->
+<!--<div>-->
+<!--<Row gutter="310" type="flex" justify="start" align="top">-->
+<!--<Col span="6">-->
+<!--<Menu theme="dark">-->
+<!--<Submenu name="1">-->
+<!--<template slot="title">-->
+<!--<Icon type="ios-paper"/>-->
+<!--收藏管理-->
+<!--</template>-->
+<!--<MenuItem name="addCollection">新增收藏</MenuItem>-->
+<!--<MenuItem name="allCollection">所有收藏</MenuItem>-->
+<!--</Submenu>-->
+
+<!--<Submenu name="3">-->
+<!--<template slot="title">-->
+<!--<Icon type="ios-stats"/>-->
+<!--统计分析-->
+<!--</template>-->
+<!--<MenuGroup title="浏览">-->
+<!--<MenuItem name="3-1">最近一周</MenuItem>-->
+<!--<MenuItem name="3-2">最近一月</MenuItem>-->
+<!--<MenuItem name="3-3">最近一年</MenuItem>-->
+<!--</MenuGroup>-->
+<!--</Submenu>-->
+<!--</Menu>-->
+<!--</Col>-->
+<!--<Col span="18"style="background-color: #2f54eb">-->
+<!--<p style="height: 580px">dd</p>-->
+<!--</Col>-->
+<!--</Row>-->
+
+<!--</div>-->
+<!--</Content>-->
+
+<!--</Layout>-->
+<!--<Footer>Footer</Footer>-->
+<!--</Layout>-->
+
+
+<!--&lt;!&ndash;<Layout>&ndash;&gt;-->
+<!--&lt;!&ndash;<Sider hide-trigger>Sider</Sider>&ndash;&gt;-->
+<!--&lt;!&ndash;<Layout>&ndash;&gt;-->
+<!--&lt;!&ndash;<Header>Header</Header>&ndash;&gt;-->
+<!--&lt;!&ndash;<Content>Content</Content>&ndash;&gt;-->
+<!--&lt;!&ndash;<Footer>Footer</Footer>&ndash;&gt;-->
+<!--&lt;!&ndash;</Layout>&ndash;&gt;-->
+<!--&lt;!&ndash;</Layout>&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+<!--</template>-->
+<!--<script>-->
+<!--export default {-->
+<!--data() {-->
+<!--return {-->
+<!--theme2: 'light'-->
+<!--}-->
+<!--}-->
+<!--}-->
+<!--</script>-->
+
+<style scoped>
+    .layout {
+        border: 1px solid #d7dde4;
+        /*background: #f5f7f9;*/
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .layout-logo {
+        width: 100px;
+        height: 30px;
+        background: #5b6270;
+        border-radius: 3px;
+        float: left;
+        position: relative;
+        top: 15px;
+        left: 20px;
+    }
+
+    .layout-nav {
+        width: 420px;
+        margin: 0 auto;
+        margin-right: 20px;
+    }
+
+    .layout-footer-center {
+        align: center;
+        text-align: right;
+        margin: 0 auto;
+        background: #4d5669;
+    }
+</style>
 <template>
-    <div>
+    <div class="layout">
+        <Layout>
+            <Drawer title="用户管理" :closable="false" v-model="value1">
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+            </Drawer>
 
-        <div class="layout">
-            <!--<Layout>-->
-            <!--<Header>Header</Header>-->
-            <!--<Content>Content</Content>-->
-            <!--<Footer>Footer</Footer>-->
-            <!--</Layout>-->
-
-            <!--<Layout>-->
-            <!--<Header>Header</Header>-->
-            <!--<Layout>-->
-            <!--<Sider hide-trigger>Sider</Sider>-->
-            <!--<Content>Content</Content>-->
-            <!--</Layout>-->
-            <!--<Footer>Footer</Footer>-->
-            <!--</Layout>-->
+            <Sider hide-trigger :style="{padding: '50px 0px'}">
+                <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
+                    <Submenu name="1">
+                        <template slot="title">
+                            <Icon type="ios-navigate"></Icon>
+                            收藏管理
+                        </template>
+                        <MenuItem name="1-1">添加收藏</MenuItem>
+                        <MenuItem name="1-2">浏览收藏</MenuItem>
+                    </Submenu>
+                    <Submenu name="2">
+                        <template slot="title">
+                            <Icon type="ios-keypad"></Icon>
+                            统计管理
+                        </template>
+                        <MenuItem name="2-1">最近一周</MenuItem>
+                        <MenuItem name="2-2">最近一月</MenuItem>
+                    </Submenu>
+                </Menu>
+            </Sider>
 
             <Layout>
-                <Header>Header</Header>
-                <Layout>
-                    <Content>
-                        <div>
-                            <Row gutter="0" type="flex" justify="start" align="top">
-                                <Col span="6">
-                                    <Menu theme="dark">
-                                        <Submenu name="1">
-                                            <template slot="title">
-                                                <Icon type="ios-paper"/>
-                                                收藏管理
-                                            </template>
-                                            <MenuItem name="1-1">文章管理</MenuItem>
-                                            <MenuItem name="1-2">评论管理</MenuItem>
-                                            <MenuItem name="1-3">举报管理</MenuItem>
-                                        </Submenu>
-                                        <Submenu name="2">
-                                            <template slot="title">
-                                                <Icon type="ios-people"/>
-                                                用户管理
-                                            </template>
-                                            <MenuItem name="2-1">新增用户</MenuItem>
-                                            <MenuItem name="2-2">活跃用户</MenuItem>
-                                        </Submenu>
-                                        <Submenu name="3">
-                                            <template slot="title">
-                                                <Icon type="ios-stats"/>
-                                                统计分析
-                                            </template>
-                                            <MenuGroup title="使用">
-                                                <MenuItem name="3-1">新增和启动</MenuItem>
-                                                <MenuItem name="3-2">活跃分析</MenuItem>
-                                                <MenuItem name="3-3">时段分析</MenuItem>
-                                            </MenuGroup>
-                                            <MenuGroup title="留存">
-                                                <MenuItem name="3-4">用户留存</MenuItem>
-                                                <MenuItem name="3-5">流失用户</MenuItem>
-                                            </MenuGroup>
-                                        </Submenu>
-                                    </Menu>
-                                </Col>
-                                <Col span="18"style="background-color: #2f54eb">
-                                    <p style="height: 580px">dd</p>
-                                </Col>
-                            </Row>
+                <Header>
 
-                        </div>
-                    </Content>
+                    <Row gutter=20 type="flex" justify="end" align="top">
+                        <Col>
+                            <Input style="width: auto" search placeholder="Enter something..."/>
+                        </Col>
+                        <Col>
+                            <div @click="value1 = true">
+                                <Avatar icon="ios-person" size="large"/>
+                            </div>
+                        </Col>
 
-                </Layout>
-                <Footer>Footer</Footer>
+                    </Row>
+                </Header>
+
+                <Content :style="{ minHeight: '580px'}">
+
+                    <Layout>
+
+                        <Content :style="{padding: '24px', minHeight: '580px', background: '#fff'}">
+                            Content
+                        </Content>
+                    </Layout>
+                </Content>
+                <Footer align="center" style="background-color: #fff">2019-2020 &copy; geekluxun.com</Footer>
             </Layout>
-
-
-            <!--<Layout>-->
-            <!--<Sider hide-trigger>Sider</Sider>-->
-            <!--<Layout>-->
-            <!--<Header>Header</Header>-->
-            <!--<Content>Content</Content>-->
-            <!--<Footer>Footer</Footer>-->
-            <!--</Layout>-->
-            <!--</Layout>-->
-        </div>
+        </Layout>
     </div>
 </template>
+
 <script>
     export default {
         data() {
             return {
-                theme2: 'light'
+                value1: true
             }
         }
     }
 </script>
+
+
+
 
 
 
