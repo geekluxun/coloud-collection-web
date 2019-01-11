@@ -178,7 +178,7 @@
             <Layout>
                 <Header>
 
-                    <Row gutter=20 type="flex" justify="end" align="top">
+                    <Row gutter = "20" type="flex" justify="end" align="top">
                         <Col>
                             <Input style="width: auto" search placeholder="Enter something..."/>
                         </Col>
@@ -187,18 +187,33 @@
                                 <Avatar icon="ios-person" size="large"/>
                             </div>
                         </Col>
+                        <Col>
+                            <div>
+                                <Button @click="queryPages">测试</Button>
+                            </div>
+                        </Col>
 
                     </Row>
                 </Header>
 
                 <Content :style="{ minHeight: '580px'}">
 
-                    <Layout>
-
-                        <Content :style="{padding: '24px', minHeight: '580px', background: '#fff'}">
-                            Content
-                        </Content>
-                    </Layout>
+                    <!--<Layout>-->
+                    <!--<Collection></Collection>-->
+                    <!--&lt;!&ndash;<Content :style="{padding: '24px', minHeight: '580px', background: '#fff'}">&ndash;&gt;-->
+                    <!--&lt;!&ndash;&ndash;&gt;-->
+                    <!--&lt;!&ndash;</Content>&ndash;&gt;-->
+                    <!--</Layout>-->
+                    <Table border :columns="collection_col" :data="pageList">
+                        <template slot-scope="{ row }" slot="name">
+                            <strong>{{ row.name }}</strong>
+                        </template>
+                        <template slot-scope="{ row, index }" slot="action">
+                            <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">View
+                            </Button>
+                            <Button type="error" size="small" @click="remove(index)">Delete</Button>
+                        </template>
+                    </Table>
                 </Content>
                 <Footer align="center" style="background-color: #fff">2019-2020 &copy; geekluxun.com</Footer>
             </Layout>
@@ -207,13 +222,69 @@
 </template>
 
 <script>
+    import collection from './collection.vue'
+    import Button from "../../dist/vendors";
+
     export default {
         data() {
             return {
-                value1: true
+                value1: true,
+                collection_col: [
+                    {
+                        title: '网页名字',
+                        key: 'name'
+                    },
+                    {
+                        title: '重要性',
+                        key: 'level'
+                    },
+                    {
+                        title: '浏览次数',
+                        key: 'browseTotalCount'
+                    },
+                    {
+                        title: '最近一次浏览时间',
+                        key: 'lastBrowseTime',
+                    }
+                ],
+                pageList: []
+            }
+        },
+        components: {},
+        methods: {
+            testGetRequest: function () {
+                axios.get('http://localhost:8084/user/test')
+                    .then(function (response) {
+                        // handle success
+                        console.log(response.data().body);
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+            },
+            queryPages: function () {
+                var _this = this;
+                axios.get('http://localhost:8084/pagecollection/queryPages', {
+                    headers: {'X-Requested-With': 'XMLHttpRequest'},
+                })
+                    .then((response) => {
+                        console.log(response.data.data.pageList);
+                        // _this.value1 = false;
+                        this.pageList = response.data.data.pageList;
+                    });
+                ;
+
             }
         }
     }
+
+    const axios = require('axios');
+
+
 </script>
 
 
